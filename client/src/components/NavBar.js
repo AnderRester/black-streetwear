@@ -21,7 +21,7 @@ const NavBar = observer(() => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
-                <NavLink className="ms-3" to={SHOP_ROUTE}>
+                <NavLink className="m-auto" style={{ paddingLeft: 72 }} to={SHOP_ROUTE}>
                     <Image width={140} height={60} src={logo} style={{ filter: "invert(1)" }} />
                 </NavLink>
                 <Navbar.Toggle aria-controls="navbarScroll" />
