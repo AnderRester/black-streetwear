@@ -8,12 +8,15 @@ const DeviceItem = ({ device }) => {
     const navigate = useNavigate();
     console.log(navigate);
     return (
-        <Col md={3} className={"mt-3"} onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}>
-            <Card style={{ width: 220, height: 300, cursor: "pointer" }}>
+        <Col
+            md={3}
+            className={"mt-3 mx-3"}
+            onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}>
+            <Card style={{ cursor: "pointer" }} c>
                 <Image
-                    className={"align-self-center"}
-                    width={"auto"}
-                    height={200}
+                    className={"align-self-center card-img-top"}
+                    width={200}
+                    height={"auto"}
                     src={process.env.REACT_APP_API_URL + device.img}
                 />
                 <div
@@ -27,12 +30,6 @@ const DeviceItem = ({ device }) => {
                     <div style={{ fontWeight: "bold", color: "darkslategray" }}>
                         {device.price} MDL
                     </div>
-                    {/* <div className={"d-flex"}>
-                        <div className={"d-flex align-items-center"}>
-                            {device.price}
-                            <Image className={"ms-1"} width={18} height={18} src={logo} />
-                        </div>
-                    </div> */}
                 </div>
             </Card>
         </Col>
