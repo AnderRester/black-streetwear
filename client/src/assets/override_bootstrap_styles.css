@@ -1,0 +1,12 @@
+@media (max-width: 992px) {
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+        left: -200% !important;
+        margin: auto;
+    }
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    left: -260%;
+}

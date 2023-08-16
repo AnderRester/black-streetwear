@@ -1,37 +1,37 @@
-import React, {useState} from 'react';
-import {Button, Form, Modal} from "react-bootstrap";
-import {createType} from "../../http/deviceAPI";
+import React, { useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+import { createType } from "../../http/deviceAPI";
 
-const CreateType = ({show, onHide}) => {
-    const [value, setValue] = useState('')
+const CreateType = ({ show, onHide }) => {
+    const [value, setValue] = useState("");
 
     const addType = () => {
-        createType({name: value}).then(data => {
-            setValue('')
-            onHide()
-        })
-    }
+        createType({ name: value }).then((data) => {
+            setValue("");
+            onHide();
+        });
+    };
     return (
-        <Modal
-            show={show}
-            onHide={onHide}
-            size="lg"
-            centered
-        >
+        <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Add new Type
-                </Modal.Title>
+                <Modal.Title id="contained-modal-title-vcenter">Добавить тип товара</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Control placeholder={"Enter a name of the type"} value={value}
-                                  onChange={e => setValue(e.target.value)}/>
+                    <Form.Control
+                        placeholder={"Введите тип"}
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                    />
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={"outline-danger"} onClick={onHide}>Close</Button>
-                <Button variant={"outline-success"} onClick={addType}>Add</Button>
+                <Button variant={"outline-danger"} onClick={onHide}>
+                    Закрыть
+                </Button>
+                <Button variant={"outline-success"} onClick={addType}>
+                    Добавить
+                </Button>
             </Modal.Footer>
         </Modal>
     );

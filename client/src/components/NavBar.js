@@ -1,14 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../index";
-import { Button, Container, Nav, Navbar, Image, Dropdown, DropdownButton } from "react-bootstrap";
-import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { Button, Container, Nav, Navbar, Image } from "react-bootstrap";
+import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, CART_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { useNavigate, NavLink } from "react-router-dom";
 import logo from "../assets/black_logo.png";
-// import Basket from "../pages/Basket";
-// import BasketPreview from "./BasketPreview";
 
-const NavBar = observer(() => {
+const NavBar = observer(({ removeFromCart }) => {
     const navigate = useNavigate();
     const { user } = useContext(Context);
 
@@ -16,12 +14,8 @@ const NavBar = observer(() => {
         user.setUser({});
         user.setIsAuth(false);
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");
     };
-
-    const [items, setItems] = useState([]);
-    localStorage.setItem("items", JSON.stringify({ imgName: "ZNY", itemPrice: "9000 MDL" }));
-    const Check = { ...localStorage };
-    console.log(Check);
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -30,59 +24,47 @@ const NavBar = observer(() => {
                     <Image width={140} height={60} src={logo} style={{ filter: "invert(1)" }} />
                 </NavLink>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse className="ml-auto">
+                <Navbar.Collapse className="justify-content-center align-items-center">
                     {user.isAuth ? (
                         <Nav
                             className="ms-auto"
                             style={{
-                                maxHeight: "140px",
+                                maxHeight: "240px",
                                 color: "white",
                                 alignItems: "center",
                                 justifyContent: "space-between",
-                            }}>
+                            }}
+                        >
                             <Button
                                 variant={"outline-light"}
-                                className="ms-3"
-                                onClick={() => navigate(ADMIN_ROUTE)}>
-                                Admin Pannel
+                                className="ms-3 my-4"
+                                onClick={() => navigate(ADMIN_ROUTE)}
+                            >
+                                Администрирование
                             </Button>
                             <Button
                                 variant={"outline-light"}
                                 className="ms-3"
-                                onClick={() => logOut()}>
-                                Log out
+                                onClick={() => navigate(CART_ROUTE)}
+                            >
+                                Корзина
                             </Button>
-                            <DropdownButton
-                                className="ms-3"
+                            <Button
                                 variant={"outline-light"}
-                                id="dropdown-basic-button"
-                                title="Cart"
-                                svg={
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="16"
-                                        height="16"
-                                        fill="currentColor"
-                                        class="bi bi-bag-fill"
-                                        viewBox="0 0 16 16">
-                                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
-                                    </svg>
-                                }>
-                                {useEffect(() => {
-                                    console.log(
-                                        localStorage.getItem("items", JSON.stringify(items))
-                                    );
-                                }, [items])}
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            </DropdownButton>
+                                className="ms-3 my-4"
+                                onClick={() => logOut()}
+                            >
+                                Выход
+                            </Button>
                         </Nav>
                     ) : (
                         <Nav className="ms-auto" style={{ maxHeight: "150px", color: "white" }}>
                             <Button
                                 variant={"outline-light"}
                                 className={"mt-2"}
-                                onClick={() => navigate(LOGIN_ROUTE)}>
-                                Sign in
+                                onClick={() => navigate(LOGIN_ROUTE)}
+                            >
+                                Войти
                             </Button>
                         </Nav>
                     )}

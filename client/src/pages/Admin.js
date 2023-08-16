@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Button, Container} from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Container } from "react-bootstrap";
 import CreateType from "../components/modals/CreateType";
 import CreateBrand from "../components/modals/CreateBrand";
 import CreateDevice from "../components/modals/CreateDevice";
@@ -10,12 +10,30 @@ const Admin = () => {
     const [deviceVisible, setDeviceVisible] = useState(false);
     return (
         <Container className={"d-flex flex-column"}>
-            <Button variant={"outline-dark"} className={"mt-2"} onClick={() => setTypeVisible(true)}>Add Type</Button>
-            <Button variant={"outline-dark"} className={"mt-2"} onClick={() => setBrandVisible(true)}>Add Brand</Button>
-            <Button variant={"outline-dark"} className={"mt-2"} onClick={() => setDeviceVisible(true)}>Add Device</Button>
-            <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
-            <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)}/>
-            <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)}/>
+            <Button
+                variant={"outline-dark"}
+                className={"mt-2"}
+                onClick={() => setTypeVisible(true)}
+            >
+                Добавить тип
+            </Button>
+            <Button
+                variant={"outline-dark"}
+                className={"mt-2"}
+                onClick={() => setBrandVisible(true)}
+            >
+                Добавить бренд
+            </Button>
+            <Button
+                variant={"outline-dark"}
+                className={"mt-2"}
+                onClick={() => setDeviceVisible(true)}
+            >
+                Добавить товар
+            </Button>
+            <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} />
+            <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
+            <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)} />
         </Container>
     );
 };
