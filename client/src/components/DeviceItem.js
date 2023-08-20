@@ -9,7 +9,7 @@ const DeviceItem = ({ device }) => {
     return (
         <Card
             style={{ cursor: "pointer" }}
-            className="my-3"
+            className="my-1 col-md-3 col-6"
             onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}
         >
             <Image
@@ -19,16 +19,15 @@ const DeviceItem = ({ device }) => {
                 src={process.env.REACT_APP_API_URL + device.img}
             />
             <div
-                className={"d-flex align-items-center justify-content-center text-center mt-3"}
-                style={{ height: "100%" }}
-            >
-                {device.name}
-            </div>
-            <div
                 className={"text-black-50 d-flex justify-content-around align-items-end mb-3"}
                 style={{ height: "100%" }}
             >
-                <div style={{ fontWeight: "bold", color: "darkslategray" }}>{device.price} MDL</div>
+                <div style={{ color: "darkslategray" }} className="text-center d-flex flex-column">
+                    {device.name}
+                    <span style={{ fontWeight: "bold", color: "darkslategray" }}>
+                        {device.price} MDL
+                    </span>
+                </div>
             </div>
         </Card>
     );

@@ -10,3 +10,20 @@
     position: absolute;
     left: -260%;
 }
+
+.advertisement {
+    position: absolute;
+    animation: arrows 1s infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation: arrows 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
+    background-color: #d0d0d0;
+}
+@keyframes aradvertisement-line {
+    0% {
+        left: 10%;
+    }
+    100% {
+        left: 80%;
+    }
+}
