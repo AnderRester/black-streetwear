@@ -31,12 +31,10 @@ const Shop = observer(() => {
         <div>
             <ADVLine />
             <div className={"d-flex flex-row mt-3 "}>
-                {/* <div>
+                <div>
                     <TypeBar />
-                </div> */}
-                {/* <div className="d-flex flex-column">
                     <BrandBar />
-                </div> */}
+                </div>
                 <DeviceList />
             </div>
         </div>

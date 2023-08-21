@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../index";
 import { getBasket } from "../http/deviceAPI";
-import { Container, Row } from "react-bootstrap";
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
 
 const Basket = observer(() => {
     const { device } = useContext(Context);

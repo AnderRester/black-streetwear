@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Col, Image } from "react-bootstrap";
-import logo from "../assets/favicon.ico";
 import { useNavigate } from "react-router-dom";
 import { DEVICE_ROUTE } from "../utils/consts";
 
@@ -9,7 +8,7 @@ const DeviceItem = ({ device }) => {
     return (
         <Card
             style={{ cursor: "pointer" }}
-            className="my-1 col-md-3 col-6"
+            className="my-1 mx-1 col-md-3 col-5"
             onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}
         >
             <Image

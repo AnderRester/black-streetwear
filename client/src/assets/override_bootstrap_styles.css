@@ -11,19 +11,37 @@
     left: -260%;
 }
 
-.advertisement {
-    position: absolute;
-    animation: arrows 1s infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation: arrows 1s; /* Chrome, Safari, Opera */
-    -webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
-    background-color: #d0d0d0;
+.advertisement_cont {
+    overflow: hidden;
+    font-family: "Pridi", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    background-color: #525252;
+    color: white;
 }
-@keyframes aradvertisement-line {
-    0% {
-        left: 10%;
+.advertisement_cont_wrapper {
+    display: flex;
+}
+
+.advertisement {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 5px 7px;
+    min-width: 100%;
+    white-space: nowrap;
+    animation-name: advertisement;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes advertisement {
+    from {
+        transform: translateX(-10%);
     }
-    100% {
-        left: 80%;
+
+    to {
+        transform: translateX(-110%);
     }
 }
