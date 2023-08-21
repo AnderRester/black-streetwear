@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import TypeBar from "../components/TypeBar";
 import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviceList";
+import Filters from "../components/Filters";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import { fetchBrands, fetchDevices, fetchOneDevice, fetchTypes } from "../http/deviceAPI";
@@ -30,6 +31,7 @@ const Shop = observer(() => {
     return (
         <div>
             <ADVLine />
+            <Filters />
             <div className={"d-flex flex-row mt-3 "}>
                 <div>
                     <TypeBar />

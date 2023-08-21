@@ -6,7 +6,7 @@ import { ListGroup } from "react-bootstrap";
 const TypeBar = observer(() => {
     const { device } = useContext(Context);
     return (
-        <ListGroup className="text-center">
+        <ListGroup className="text-center sidebar_filter">
             <span className="ms-3 my-3">Тип одежды</span>
             {device.types.map((type) => (
                 <ListGroup.Item

@@ -1,9 +1,6 @@
-@media (max-width: 992px) {
-    .navbar-nav .dropdown-menu {
-        position: absolute;
-        left: -200% !important;
-        margin: auto;
-    }
+.btn:focus {
+    outline: none !important;
+    --bs-btn-focus-shadow-rgb: transparent;
 }
 
 .navbar-nav .dropdown-menu {
@@ -43,5 +40,23 @@
 
     to {
         transform: translateX(-110%);
+    }
+}
+
+@media (min-width: 992px) {
+    .sidebar_filter {
+        display: flex;
+    }
+    .filters_nav {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar_filter {
+        display: none;
+    }
+    .filters_nav {
+        display: flex;
     }
 }
