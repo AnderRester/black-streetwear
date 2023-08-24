@@ -32,7 +32,6 @@ const Shop = observer(() => {
     return (
         <div>
             <ADVLine />
-            <CurrencyConverter />
             <Filters />
             <div className={"d-flex flex-row mt-3 "}>
                 <div>
