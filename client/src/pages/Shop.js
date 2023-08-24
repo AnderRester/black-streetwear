@@ -5,8 +5,9 @@ import DeviceList from "../components/DeviceList";
 import Filters from "../components/Filters";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
-import { fetchBrands, fetchDevices, fetchOneDevice, fetchTypes } from "../http/deviceAPI";
+import { fetchBrands, fetchDevices, fetchTypes } from "../http/deviceAPI";
 import ADVLine from "../components/ADVLine";
+import CurrencyConverter from "../components/CurrencyConverter";
 
 const Shop = observer(() => {
     const { device } = useContext(Context);
@@ -31,6 +32,7 @@ const Shop = observer(() => {
     return (
         <div>
             <ADVLine />
+            <CurrencyConverter />
             <Filters />
             <div className={"d-flex flex-row mt-3 "}>
                 <div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Image } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { DEVICE_ROUTE } from "../utils/consts";
 
