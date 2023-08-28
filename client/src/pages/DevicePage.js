@@ -57,7 +57,11 @@ const DevicePage = () => {
                                 Добавить в корзину
                             </Button>
                         ) : (
-                            <Button className={"my-3"} onClick={() => navigate(LOGIN_ROUTE)}>
+                            <Button
+                                className={"my-3"}
+                                variant={"outline-dark"}
+                                onClick={() => navigate(LOGIN_ROUTE)}
+                            >
                                 Добавить в корзину
                             </Button>
                         )}

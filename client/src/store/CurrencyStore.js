@@ -2,10 +2,10 @@ import { makeAutoObservable } from "mobx";
 export default class CurrencyStore {
     constructor() {
         this._currency = [
-            { id: 1, value: "€" },
-            { id: 2, value: "$" },
-            { id: 3, value: "RON" },
-            { id: 4, value: "MDL" },
+            { id: 1, name: "€", value: 19 },
+            { id: 2, name: "$", value: 18 },
+            { id: 3, name: "RON", value: 4 },
+            { id: 4, name: "MDL", value: 1 },
         ];
         this._selectedCurrency = {};
         this._page = 1;
@@ -17,8 +17,8 @@ export default class CurrencyStore {
     }
 
     setSelectedCurrency(currency) {
-        this.setPage(1);
         this._selectedCurrency = currency;
+        this.setPage(1);
     }
 
     setPage(page) {

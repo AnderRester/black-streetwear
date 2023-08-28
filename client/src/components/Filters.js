@@ -7,8 +7,9 @@ import {
     InputGroup,
     Form,
     ListGroup,
+    Image,
 } from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../index";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
@@ -18,12 +19,9 @@ const Filters = observer(() => {
     const navigate = useNavigate();
     const { device } = useContext(Context);
     const { currency } = useContext(Context);
-
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     const [search, setSeacrh] = useState("");
 
     return (
@@ -35,9 +33,12 @@ const Filters = observer(() => {
                             style={{ cursor: "pointer" }}
                             key={item.id}
                             active={item.id === currency.currency.id}
-                            onClick={() => currency.setSelectedCurrency(item)}
+                            onClick={() => {
+                                currency.setSelectedCurrency(item);
+                                localStorage.setItem("selectedCurrency", JSON.stringify(item));
+                            }}
                         >
-                            {item.value}
+                            {item.name}
                         </Dropdown.Item>
                     ))}
                 </DropdownButton>
@@ -112,8 +113,14 @@ const Filters = observer(() => {
                                         key={item.id}
                                         onClick={() => navigate(DEVICE_ROUTE + "/" + item.id)}
                                     >
-                                        <div>
-                                            {item.name} {item.price}
+                                        <div className="d-flex justify-content-around align-items-center">
+                                            <Image
+                                                style={{ width: 120, height: "auto" }}
+                                                src={process.env.REACT_APP_API_URL + item.img}
+                                            />
+                                            <span style={{ fontWeight: 500, fontSize: 24 }}>
+                                                {item.name} {item.price}
+                                            </span>
                                         </div>
                                     </ListGroup.Item>
                                 ))

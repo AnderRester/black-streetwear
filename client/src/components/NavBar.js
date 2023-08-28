@@ -1,7 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../index";
-import { Button, Container, Nav, Navbar, Image } from "react-bootstrap";
-import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, CART_ROUTE } from "../utils/consts";
+import {
+    Button,
+    Container,
+    Nav,
+    Navbar,
+    Image,
+    Modal,
+    InputGroup,
+    Form,
+    ListGroup,
+} from "react-bootstrap";
+import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, CART_ROUTE, DEVICE_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { useNavigate, NavLink } from "react-router-dom";
 import logo from "../assets/black_logo.png";
@@ -9,6 +19,7 @@ import logo from "../assets/black_logo.png";
 const NavBar = observer(({ removeFromCart }) => {
     const navigate = useNavigate();
     const { user } = useContext(Context);
+    const { device } = useContext(Context);
 
     const logOut = () => {
         user.setUser({});
@@ -16,6 +27,10 @@ const NavBar = observer(({ removeFromCart }) => {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
     };
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [search, setSeacrh] = useState("");
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -74,16 +89,99 @@ const NavBar = observer(({ removeFromCart }) => {
                             </Button>
                         </Nav>
                     ) : (
-                        <Nav className="ms-auto" style={{ maxHeight: "150px", color: "white" }}>
-                            <Button
-                                variant={"outline-light"}
-                                className={"mt-2"}
-                                onClick={() => navigate(LOGIN_ROUTE)}
+                        <>
+                            <Nav className="ms-auto" style={{ maxHeight: "150px", color: "white" }}>
+                                <Button
+                                    variant={"outline-light"}
+                                    className={"mt-2"}
+                                    onClick={() => navigate(LOGIN_ROUTE)}
+                                >
+                                    Войти
+                                </Button>
+                            </Nav>
+                            <Nav
+                                as="li"
+                                className="mx-2 seacrh_nav"
+                                style={{ maxHeight: "150px", color: "white" }}
                             >
-                                Войти
-                            </Button>
-                        </Nav>
+                                <Button
+                                    variant={"outline-light"}
+                                    className={"mt-2"}
+                                    onClick={handleShow}
+                                >
+                                    <svg
+                                        fill="currentColor"
+                                        viewBox="0 0 16 16"
+                                        height="1.3em"
+                                        width="1.3em"
+                                    >
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </Button>
+                            </Nav>
+                        </>
                     )}
+                    <Modal
+                        show={show}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                        className="mt-5"
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Поиск</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <InputGroup>
+                                <Form.Control
+                                    placeholder="Введите модель"
+                                    aria-label="model"
+                                    aria-describedby="basic-addon1"
+                                    value={search}
+                                    onChange={(e) => setSeacrh(e.target.value)}
+                                />
+                            </InputGroup>
+                            <hr />
+                            <ListGroup.Item>
+                                {search === "" ? (
+                                    <ListGroup.Item>
+                                        Вы ничего не ввели в строке поиска
+                                    </ListGroup.Item>
+                                ) : (
+                                    device.devices
+                                        .filter((supp) =>
+                                            supp.name.toLowerCase().includes(search.toLowerCase())
+                                        )
+                                        .map((item) => (
+                                            <ListGroup.Item
+                                                key={item.id}
+                                                onClick={() =>
+                                                    navigate(DEVICE_ROUTE + "/" + item.id)
+                                                }
+                                            >
+                                                <div className="d-flex justify-content-around align-items-center">
+                                                    <Image
+                                                        style={{ width: 120, height: "auto" }}
+                                                        src={
+                                                            process.env.REACT_APP_API_URL + item.img
+                                                        }
+                                                    />
+                                                    <span style={{ fontWeight: 500, fontSize: 24 }}>
+                                                        {item.name} {item.price}
+                                                    </span>
+                                                </div>
+                                            </ListGroup.Item>
+                                        ))
+                                )}
+                            </ListGroup.Item>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Закрыть
+                            </Button>
+                            <Button variant="primary">Найти</Button>
+                        </Modal.Footer>
+                    </Modal>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

@@ -10,7 +10,7 @@ const CurrencyConverter = observer(() => {
     return (
         <div className="d-flex justify-content-start align-items-center">
             {currency.currency.map((item) => (
-                <Button variant="dark">{item.value}</Button>
+                <Button variant="dark">{item.name}</Button>
             ))}
         </div>
     );

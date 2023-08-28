@@ -2,8 +2,11 @@ import React from "react";
 import { Card, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { DEVICE_ROUTE } from "../utils/consts";
+import { useContext } from "react";
+import { Context } from "..";
 
 const DeviceItem = ({ device }) => {
+    const { currency } = useContext(Context);
     const navigate = useNavigate();
     return (
         <Card

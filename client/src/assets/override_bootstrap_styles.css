@@ -50,6 +50,9 @@
     .filters_nav {
         display: none;
     }
+    .seacrh_nav {
+        display: flex;
+    }
 }
 
 @media (max-width: 992px) {
@@ -58,5 +61,8 @@
     }
     .filters_nav {
         display: flex;
+    }
+    .seacrh_nav {
+        display: none;
     }
 }
