@@ -7,7 +7,7 @@ const DeviceList = observer(() => {
     const { device } = useContext(Context);
 
     return (
-        <div className={"d-flex flex-row flex-wrap justify-content-center"}>
+        <div className={"d-flex flex-row flex-wrap justify-content-center align-items-start"}>
             {device.devices.map((device) => (
                 <DeviceItem key={device.id} device={device}></DeviceItem>
             ))}

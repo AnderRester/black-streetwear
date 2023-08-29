@@ -37,6 +37,7 @@ const Shop = observer(() => {
                 <div>
                     <TypeBar />
                     <BrandBar />
+                    <CurrencyConverter />
                 </div>
                 <DeviceList />
             </div>
