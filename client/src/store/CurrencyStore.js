@@ -17,8 +17,8 @@ export default class CurrencyStore {
     }
 
     setSelectedCurrency(currency) {
-        this._selectedCurrency = currency;
         this.setPage(1);
+        this._selectedCurrency = currency;
     }
 
     setPage(page) {
