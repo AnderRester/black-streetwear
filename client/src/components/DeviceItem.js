@@ -9,19 +9,6 @@ import { observer } from "mobx-react-lite";
 const DeviceItem = ({ device }) => {
     const { currency } = useContext(Context);
 
-    useEffect(() => {
-        currency.setSelectedCurrency(
-            JSON.parse(localStorage.getItem("selectedCurrency")) || currency.currency[3]
-        );
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem(
-            "selectedCurrency",
-            JSON.stringify(currency.selectedCurrency) || JSON.stringify(currency.currency[3])
-        );
-    }, []);
-
     const navigate = useNavigate();
     return (
         <Card

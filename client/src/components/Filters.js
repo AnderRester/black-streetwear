@@ -32,7 +32,7 @@ const Filters = observer(() => {
                         <Dropdown.Item
                             style={{ cursor: "pointer" }}
                             key={item.id}
-                            active={item.id === currency.currency.id}
+                            active={item.id === currency.selectedCurrency.id}
                             onClick={() => {
                                 currency.setSelectedCurrency(item);
                                 navigate(SHOP_ROUTE);
