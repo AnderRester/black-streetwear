@@ -2,17 +2,25 @@ import { observer } from "mobx-react-lite";
 import { useContext, useEffect } from "react";
 import { Context } from "..";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
+import { SHOP_ROUTE } from "../utils/consts";
+import { useNavigate } from "react-router-dom";
 
 const CurrencyConverter = observer(() => {
     const { currency } = useContext(Context);
+    const navigate = useNavigate();
 
-    // useEffect(
-    //     () =>
-    //         // JSON.parse(localStorage.getItem("currency")) === undefined
-    //         //     ?
-    //         // currency.setSelectedCurrency(currency.currency[1])
-    //     // : currency.setSelectedCurrency(JSON.parse(localStorage.getItem("currency")))
-    // );
+    useEffect(() => {
+        currency.setSelectedCurrency(
+            JSON.parse(localStorage.getItem("selectedCurrency")) || currency.currency[3]
+        );
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(
+            "selectedCurrency",
+            JSON.stringify(currency.selectedCurrency) || JSON.stringify(currency.currency[3])
+        );
+    }, []);
 
     // currency._currency.map((...item) => console.log(item));
     console.log(currency.currency.selectedCurrencie);
@@ -28,7 +36,14 @@ const CurrencyConverter = observer(() => {
                             className='mx-1'
                             active={item.id === currency.selectedCurrency.id}
                             key={item.id}
-                            onClick={() => currency.setSelectedCurrency(item)}>
+                            onClick={() => {
+                                currency.setSelectedCurrency(item);
+                                localStorage.setItem(
+                                    "selectedCurrency",
+                                    JSON.stringify(currency.selectedCurrency)
+                                );
+                                navigate(SHOP_ROUTE);
+                            }}>
                             {item.name}
                         </Button>
                     ))}

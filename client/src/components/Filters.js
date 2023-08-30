@@ -13,7 +13,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../index";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
-import { DEVICE_ROUTE } from "../utils/consts";
+import { DEVICE_ROUTE, SHOP_ROUTE } from "../utils/consts";
 
 const Filters = observer(() => {
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Filters = observer(() => {
                             active={item.id === currency.currency.id}
                             onClick={() => {
                                 currency.setSelectedCurrency(item);
-                                localStorage.setItem("selectedCurrency", JSON.stringify(item));
+                                navigate(SHOP_ROUTE);
                             }}>
                             {item.name}
                         </Dropdown.Item>
@@ -114,7 +114,7 @@ const Filters = observer(() => {
                                                 src={process.env.REACT_APP_API_URL + item.img}
                                             />
                                             <span style={{ fontWeight: 500, fontSize: 24 }}>
-                                                {item.name} {item.price}
+                                                {item.name}
                                             </span>
                                         </div>
                                     </ListGroup.Item>

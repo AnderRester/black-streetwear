@@ -160,7 +160,7 @@ const NavBar = observer(({ removeFromCart }) => {
                                                         }
                                                     />
                                                     <span style={{ fontWeight: 500, fontSize: 24 }}>
-                                                        {item.name} {item.price}
+                                                        {item.name}
                                                     </span>
                                                 </div>
                                             </ListGroup.Item>
