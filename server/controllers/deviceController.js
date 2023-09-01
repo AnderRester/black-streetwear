@@ -59,6 +59,25 @@ class DeviceController {
         });
         return res.json(device);
     }
+
+    // async updateOne(req, res) {
+    //     const { id } = req.params;
+    //     const { name } = req.body;
+    //     const type = await Type.findOne({
+    //         where: { id },
+    //     });
+    //     device.update({ name: name });
+    //     return res.json(type);
+    // }
+
+    async removeOne(req, res) {
+        const { id } = req.params;
+        const device = await Device.removeOne({
+            where: { id },
+            include: [{ model: DeviceInfo, as: "info" }],
+        });
+        return res.json(device);
+    }
 }
 
 module.exports = new DeviceController();
