@@ -19,6 +19,12 @@ class BrandController {
         const brand = await Type.findOne({
             where: { id },
         });
+
+        /*//or
+        await User.update({ lastName: "Jackson" }, {
+        where: {
+        lastName: null
+        }*/
         brand.update({ name: name });
         return res.json(brand);
     }
